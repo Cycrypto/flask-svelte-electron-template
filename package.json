@@ -1,17 +1,15 @@
 {
-  "name": "page-hunter",
+  "name": "flask-svelte-electron",
   "version": "1.0.0",
-  "main": "electron/main.js",
+  "main": "electron/dist/main.js",
   "scripts": {
-    "start": "concurrently \"npm run backend\" \"npm run frontend\" \"npm run electron\"",
-    "backend": "cd backend && source .venv/bin/activate && python app.py",
-    "frontend": "cd frontend && npm run dev",
-    "electron": "wait-on http://localhost:5173 && electron ."
+    "start": "concurrently \"npm run dev:flask\" \"npm run dev:svelte\" \"npm run dev:electron\"",
+    "dev:flask": "cd backend && flask run",
+    "dev:svelte": "cd client && npm run dev",
+    "dev:electron": "cd electron && npx tsc && npm start"
   },
-  "dependencies": {
+  "devDependencies": {
     "concurrently": "^8.2.2",
-    "cross-env": "^7.0.3",
-    "electron": "^31.2.1",
-    "wait-on": "^7.2.0"
+    "typescript": "^5.2.2"
   }
 }
